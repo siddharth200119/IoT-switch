@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 })
 
 app.post('/', function(req, res){
-    content = req.body
+    console.log("received")
 })
 
 app.listen(3000, function(){

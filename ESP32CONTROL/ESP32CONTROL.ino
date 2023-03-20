@@ -17,7 +17,7 @@ unsigned long previousTime = 0;
 String outputsState;
 
 //single relay
-int relayPin = 26
+int relayPin = 26;
 
 void setup() {
   // put your setup code here, to run once:
@@ -45,23 +45,22 @@ void loop() {
 
       //checking is the recieved obj is valid
       if(JSON.typeof(obj) == "undefined"){
-        Serial.println("invalid obj")
+        Serial.println("invalid obj");
         return;
       }
 
       //parsing through all the key value pairs of the recieved JSON file
-      JSOnVar keys = obj.keys();
+      JSONVar keys = obj.keys();
 
       for(int i = 0; i<keys.length(); i++){
-        val = obj[keys[i]] //get the value associated with the key
-        pinMode(atoi(keys[i]), atoi(val));
+        pinMode(atoi(keys[i]), atoi(obj[keys[i]])); //get the value associated with the key 
       }
 
       //update time
       previousTime = currentTime;
     }
     else{
-      Serial.println("WiFi Disconnected")
+      Serial.println("WiFi Disconnected");
     }
   }
 }
